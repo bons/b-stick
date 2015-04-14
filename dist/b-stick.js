@@ -10,12 +10,12 @@ var MODULE_NAME = 'bons.bStick';
 var angular = require('angular');
 
 angular .module(MODULE_NAME, [])
-        .directive("bStick", function( $window )
+        .directive("bStick", ['$window', function( $window )
         {
           return {
             restrict: "A",
             scope: true,
-            controller: function( $scope )
+            controller: ['$scope', function( $scope )
             {
               window.onscroll = function()
               {
@@ -25,7 +25,7 @@ angular .module(MODULE_NAME, [])
                   $scope.scrollY = $window.scrollY;
                 });
               };
-            },
+            }],
 
             link: function link( scp, elm, attr )
             {
@@ -64,7 +64,7 @@ angular .module(MODULE_NAME, [])
               });
             }
           };
-        });
+        }]);
 
 module.exports = MODULE_NAME;
 
